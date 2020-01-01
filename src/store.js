@@ -1,3 +1,6 @@
+// This is a temporary data structure to stand in for a database.
+// When you restart the server, it will revert to these values
+
 const cards = [{
     id: 1,
     title: 'Task One',

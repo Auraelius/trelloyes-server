@@ -13,6 +13,7 @@ const validateBearerToken = require('./validate-bearer-token')
 
 // Let's configure the app based on the process environment
 const { NODE_ENV } = require('./config')
+console.log('App: NODE_ENV: ', NODE_ENV)
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
