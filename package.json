@@ -1,8 +1,8 @@
 {
-  "name": "express-boilerplate",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "trelloyes-example",
+  "version": "0.0.1",
+  "description": "Midway through refactoring the card and list resources",
+  "main": "server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",

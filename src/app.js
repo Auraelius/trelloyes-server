@@ -11,12 +11,11 @@ const logger = require('./logger');
 const cardRouter = require('./card/card-router')
 const validateBearerToken = require('./validate-bearer-token')
 
-// Let's configure the app
+// Let's configure the app based on the process environment
 const { NODE_ENV } = require('./config')
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
-
 
 // temporarily get access to our data store
 const { cards, lists } = require('./store'); // will be moved into router
@@ -25,7 +24,6 @@ const { cards, lists } = require('./store'); // will be moved into router
 const app = express()
 
 // main request pipeline
-
 app.use(morgan(morganOption))
 app.use(cors())
 app.use(helmet())
@@ -127,6 +125,7 @@ app.use(function errorHandler(error, req, res, next) {
     if (NODE_ENV === 'production') {
       response = { error: { message: 'server error' } }
     } else {
+      logger.error(error);
       console.error(error)
       response = { message: error.message, error }
     }

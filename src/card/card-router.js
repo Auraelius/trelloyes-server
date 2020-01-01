@@ -7,6 +7,7 @@ const bodyParser = express.json()
 
 const { cards, lists } = require('../store');
 
+// First, the index route
 
 cardRouter
   .route('/card')
@@ -51,8 +52,9 @@ cardRouter
 
   })
 
+  // Next, the specific route, added to the same router
 
-  cardRouter
+cardRouter
   .route('/card/:id')
   .get( (req, res) => {
     const { id } = req.params;
@@ -96,6 +98,5 @@ cardRouter
       .end();
   })
 
-
-
+  // Make this router available for use in app.js
 module.exports = cardRouter
