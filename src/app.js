@@ -30,7 +30,10 @@ app.use(cors())
 app.use(helmet())
 app.use(express.json());
 app.use(validateBearerToken)
-app.use(cardRouter)
+
+// Resource-specific routers
+app.use('/card', cardRouter)
+
 
 // the following stuff still needs to be refactored into its own router
 app.get('/list', (req, res) => {
@@ -121,13 +124,15 @@ app.delete('/list/:id', (req, res) => {
 
 });
 
+// Finally, the catch-all error handler
+// Note that it's more chatty in development environment
 app.use(function errorHandler(error, req, res, next) {
     let response
+    logger.error(error); // logger transport depends on environment
     if (NODE_ENV === 'production') {
       response = { error: { message: 'server error' } }
     } else {
-      logger.error(error);
-      console.error(error)
+      // console.error(error)
       response = { message: error.message, error }
     }
     res.status(500).json(response)

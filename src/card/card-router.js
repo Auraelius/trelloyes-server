@@ -7,10 +7,10 @@ const bodyParser = express.json()
 
 const { cards, lists } = require('../store');
 
-// First, the index route
 
+// First, the index route
 cardRouter
-  .route('/card')
+  .route('/')
   .get((req, res) => {
     res
       .json(cards);
@@ -49,13 +49,12 @@ cardRouter
       .status(201)
       .location(`http://localhost:8000/card/${id}`)
       .json({ id });
-
+// 
   })
 
-  // Next, the specific route, added to the same router
-
+// Next, the specific route, added to the same router
 cardRouter
-  .route('/card/:id')
+  .route('/:id')
   .get( (req, res) => {
     const { id } = req.params;
     const card = cards.find(c => c.id == id);
